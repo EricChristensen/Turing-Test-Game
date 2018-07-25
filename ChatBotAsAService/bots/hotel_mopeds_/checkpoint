@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/ec035872/Dev/python/chatbot/Turing-Test-Game/ChatBotAsAService/bots/hotel_mopeds_/hotel_mopeds_model.tflearn"
+all_model_checkpoint_paths: "/Users/ec035872/Dev/python/chatbot/Turing-Test-Game/ChatBotAsAService/bots/hotel_mopeds_/hotel_mopeds_model.tflearn"

@@ -1,0 +1,1 @@
+{"intents": [{"tag": "want", "patterns": ["can i have a dollar", "i want stuff"], "responses": ["i dont have anything to give stop bothering me"]}, {"tag": "threat", "patterns": ["im gonna get you", "i will kill you", "i dont like you", "i am going to hurt you", "take this", "i want to punch you"], "responses": ["you are scary! self destruct of earth initiated!"]}]}
