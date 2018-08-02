@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/ec035872/Dev/python/chatbot/github_test/Turing-Test-Game/ChatBotAsAService/bots/the_buck_/the_buck_model.tflearn"
+all_model_checkpoint_paths: "/Users/ec035872/Dev/python/chatbot/github_test/Turing-Test-Game/ChatBotAsAService/bots/the_buck_/the_buck_model.tflearn"
