@@ -6,6 +6,7 @@ import random
 import numpy as np
 from nltk.stem.lancaster import LancasterStemmer
 import tensorflow as tf
+from botutil import BotUtil
 
 class ChatBot:
     def __init__(self, name):
@@ -16,6 +17,10 @@ class ChatBot:
         self.load_features()
         self.load_model()
 
+    # hmm this is interesting... the bot has features? the bot is aware of the features...
+    # it is the part of its brain that figures out how it classifies things. It is its memory
+    # and its meaning. Should this stay within the bot? Yes for now...But this might not
+    # be specific just to bots. This might be
     def load_features(self):
         data = pickle.load(open(self.filepath + "training_data", "rb"))
         self.words = data['words']
@@ -23,6 +28,8 @@ class ChatBot:
         self.training_x = data['training_x']
         self.training_y = data['training_y']
 
+    # this should stay because the bot has a model. what model does the bot have?
+    # well the bot has this model...
     def load_model(self):
         tf.reset_default_graph()
         #nueral net stuff
@@ -42,27 +49,14 @@ class ChatBot:
             intents = json.load(json_data)
         return intents
 
-    def clean_up_sentence(self, sentence):
-        sentence_words = nltk.word_tokenize(sentence)
-        sentence_words = [self.stemmer.stem(word.lower()) for word in sentence_words]
-        return sentence_words
-
-    def bow(self, sentence, words, show_details=False):
-        sentence_words = self.clean_up_sentence(sentence)
-        # bag of words
-        bag = [0]*len(words)
-        for s in sentence_words:
-            for i,w in enumerate(words):
-                if w == s:
-                    bag[i] = 1
-                    if show_details:
-                        print("found in bag: %s" % w)
-        return (np.array(bag))
-
+    # this needs the model so it is unlikely it should be refactored out into a helper
+    # the bot classifies. The bot responds. The bot shouldn't know about bag of words though...
+    # the bot has a model
     def classify(self, sentence):
         ERROR_THRESHOLD = 0.25
         # generate probabilities from the model
-        results = self.model.predict([self.bow(sentence, self.words)])[0]
+        # results = self.model.predict([self.bow(sentence, self.words)])[0]
+        results = self.model.predict([BotUtil.bow(sentence, self.words)])[0]
         # filter out predictions below a threshold
         results = [[i,r] for i,r in enumerate(results) if r>ERROR_THRESHOLD]
         # sort by strength of probability
